@@ -1,0 +1,14 @@
+TODOS:
+Registracija usera,
+Blokiranje usera
+Admin view
+Korisnik view
+
+Korisnik moze da glasa samo za aktivne ankete
+Neaktivne samo gleda
+Glasanje samo jednom
+Submitovati sve izbore sa jedne stranice ili ici jedno po jedno pitanje? Mozda ovo poslednje je jednostavnije
+
+Napraviti graficki prikaz rezultata po pitanju http://www.chartjs.org
+https://speckyboy.com/open-source-javascript-data-chart-libraries/
+
