@@ -23,7 +23,7 @@ class OdgovorController {
 
     def create(Long id) {
 
-        respond new Odgovor(pitanje:pitanjeService.get(id))
+        respond new Odgovor(pitanje:pitanjeService.get(id)), model: [svaPitanja:pitanjeService.list()]
     }
 
     def save(Odgovor odgovor) {
@@ -45,7 +45,7 @@ class OdgovorController {
     }
 
     def edit(Long id) {
-        respond odgovorService.get(id)
+        respond odgovorService.get(id), model: [svaPitanja:pitanjeService.list()]
     }
 
     def update(Odgovor odgovor) {
@@ -76,15 +76,11 @@ class OdgovorController {
             return
         }
 
+        def odgovor = odgovorService.get(id)
         odgovorService.delete(id)
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'odgovor.label', default: 'Odgovor'), id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
+        redirect(controller: "pitanje", action: "show", id: odgovor.pitanje.id)
+        return
     }
 
     protected void notFound() {

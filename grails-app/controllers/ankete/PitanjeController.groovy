@@ -26,11 +26,10 @@ class PitanjeController {
     }
 
     def create(Long id) {
-        anketaService.get(id)
         Pitanje p = new Pitanje(params)
         p.anketa = anketaService.get(id)
 
-        respond p
+        respond p, model:[sveAnkete:anketaService.list()]
     }
 
     def save(Pitanje pitanje) {
@@ -52,16 +51,27 @@ class PitanjeController {
 
     @Secured(['ROLE_ADMIN','ROLE_REGULAR'])
     def vote(Long id){
-        respond pitanjeService.get(id)
+        def pitanje = pitanjeService.get(id)
+
+        pitanje.odgovori.add(new Odgovor(slobodanUnos: true))
+
+        respond pitanje
     }
 
      @Secured(['ROLE_ADMIN','ROLE_REGULAR'])
     def voteSave(){
 
+         def pitanje = pitanjeService.get(params.long('pitanje'))
         //Save checked izbor
+         Long odgovorId = params.long('pitanjaGroup')
+         def firstCheckedOdgovor = null
+         if(odgovorId == 0){
+             firstCheckedOdgovor = odgovorService.save(new Odgovor(slobodanUnos: true, pitanje: pitanje,tekst: params.slobodanUnos ))
+         }
+         else{
+             firstCheckedOdgovor = odgovorService.get(odgovorId)
+         }
 
-        def firstCheckedOdgovor = odgovorService.get(params.long('pitanjaGroup'))
-         def pitanje = firstCheckedOdgovor.pitanje
         Izbor izbor = new Izbor(pitanje:firstCheckedOdgovor.pitanje,
                 anketa:firstCheckedOdgovor.pitanje.anketa,
                 odgovor:firstCheckedOdgovor,
@@ -115,7 +125,7 @@ class PitanjeController {
 
 
     def edit(Long id) {
-        respond pitanjeService.get(id)
+        respond pitanjeService.get(id), model:[sveAnkete:anketaService.list()]
     }
 
 

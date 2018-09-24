@@ -9,5 +9,6 @@ class Odgovor {
     static hasMany=[izbori:Izbor]
     String tekst
     Boolean checked=true
+    Boolean slobodanUnos = false
 
 }

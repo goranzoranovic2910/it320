@@ -19,13 +19,20 @@
             </g:if>
             
              <fieldset class="form">
-                    <ol class="property-list pitanje">
-                            <li class="fieldcontain">
-                                <f:display id="anketa" bean="pitanje" property="anketa" wrapper="anketa"/>   
-                            </li>
-                    </ol>
-                 
-                  <f:display bean="pitanje" order="anketa,tekst" />
+
+                 <ol class="property-list pitanje">
+
+                     <li class="fieldcontain">
+                         <span id="tekst-label" class="property-label">Anketa</span>
+                         <div class="property-value">
+                             <f:display id="anketa" bean="pitanje" property="anketa" wrapper="anketa"/>
+                         </div>
+                     </li>
+
+                 </ol>
+
+
+                  <f:display bean="pitanje" order="tekst" />
                   <f:table collection="${pitanje.odgovori}" properties="['tekst']" />            
             </fieldset>
            

@@ -30,7 +30,7 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:display bean="anketa" order="naslov, anonimna, aktivna" />
+            <f:display bean="anketa" order="naslov, aktivna" />
             <f:table collection="${anketa.pitanja}" properties="['tekst']" /> 
             <g:link controller='pitanje' action="create" id="${this.anketa.id}">Add Pitanje</g:link>
             <sec:access expression="hasRole('ROLE_ADMIN')">

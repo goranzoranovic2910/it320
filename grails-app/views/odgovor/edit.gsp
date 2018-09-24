@@ -29,7 +29,15 @@
             <g:form resource="${this.odgovor}" method="PUT">
                 <g:hiddenField name="version" value="${this.odgovor?.version}" />
                 <fieldset class="form">
-                    <f:all bean="odgovor"/>
+                    <div class="fieldcontain required">
+                        <label for="pitanje">Pitanje</label>
+                        <g:select name="pitanje"
+                                  from="${svaPitanja}"
+                                  value="${this.odgovor.pitanje}"
+                                  optionKey="id"
+                                  optionValue="tekst" />
+                    </div>
+                    <f:all bean="odgovor" order="tekst"/>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />

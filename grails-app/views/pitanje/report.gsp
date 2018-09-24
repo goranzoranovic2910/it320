@@ -35,9 +35,9 @@
                     <input type="submit" value="Primeni" />
                 </fieldset>
             </g:form>
-            
+            <h1>Broj odbranih odgovora</h1>
             <canvas id="izborCount" class="chart"></canvas>
-
+            <h1>Procenti odabranih odgovora</h1>
             <canvas id="izborPie" class="chart"></canvas>
 
 
@@ -81,6 +81,7 @@
 			type: 'bar',
 			data: {
 				datasets: [{
+				    label: 'Filtriran set',
 					data: izboriCount,
                     backgroundColor: [
 						window.chartColors.red,

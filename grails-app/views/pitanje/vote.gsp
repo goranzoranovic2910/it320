@@ -16,17 +16,24 @@
             <h3>${pitanje.tekst}</h3>
             <g:form METHOD="POST" url="[action:'voteSave',controller:'pitanje']">
                 <fieldset>
-
+                    <g:hiddenField name="pitanje" value="${pitanje.id}"/>
                     <g:each in="${pitanje.odgovori}" var="odgovor">
-                        <label for="${odgovor.id}">${odgovor.tekst}</label>
-                        <g:radio name="pitanjaGroup" id="${odgovor.id}" value="${odgovor.id}" checked="${odgovor.checked}"/>
-                        <br>
+
+                        <g:if test="${!odgovor.slobodanUnos}">
+                            <label for="${odgovor.id}">${odgovor.tekst}</label>
+                            <g:radio name="pitanjaGroup" id="${odgovor.id}" value="${odgovor.id}" checked="${odgovor.checked}"/>
+                            <br>
+                        </g:if>
+
+
                     </g:each>
+                    <label for="0">Slobodan unos</label>
+                    <g:radio name="pitanjaGroup" id="0" value="0"/>
+                    <g:textField name="slobodanUnos" />
+
                 </fieldset>
                 <fieldset class="buttons">
                     <input type="submit" value="Sacuvaj" />
-                    <%--<g:actionSubmit value="Sacuvaj odgovor"/>
-                     <g:link class="save" controller="pitanje" action="voteSave" resource="${this.pitanje}">Dalje</g:link> --%>
                 </fieldset>
             </g:form>
         </div>

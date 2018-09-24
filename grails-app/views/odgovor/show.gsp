@@ -19,7 +19,16 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:display bean="odgovor" />
+            <ol class="property-list pitanje">
+                <li class="fieldcontain">
+                    <span id="tekst-label" class="property-label">Pitanje</span>
+                    <div class="property-value">
+                        <f:display id="pitanje" bean="odgovor" property="pitanje"/>
+                    </div>
+                </li>
+            </ol>
+            <f:display bean="odgovor" order="tekst"/>
+
             <g:form resource="${this.odgovor}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="edit" action="edit" resource="${this.odgovor}"><g:message code="default.button.edit.label" default="Edit" /></g:link>

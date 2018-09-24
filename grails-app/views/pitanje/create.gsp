@@ -26,7 +26,15 @@
             </g:hasErrors>
             <g:form resource="${this.pitanje}" method="POST">
                 <fieldset class="form">
-                    <f:all bean="pitanje"/>
+                    <div class="fieldcontain required">
+                        <label for="anketa">Anketa</label>
+                        <g:select name="anketa"
+                                  from="${sveAnkete}"
+                                  value="${pitanje.anketa}"
+                                  optionKey="id"
+                                  optionValue="naslov" />
+                    </div>
+                    <f:all bean="pitanje" order="tekst"/>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

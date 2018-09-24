@@ -9,6 +9,5 @@ class Anketa {
 
     String naslov
     boolean aktivna
-    boolean anonimna 
 
 }

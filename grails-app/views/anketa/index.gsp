@@ -20,7 +20,7 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${anketaList}" order="naslov, aktivna, anonimna" />
+            <f:table collection="${anketaList}" order="naslov,aktivna" />
 
             <div class="pagination">
                 <g:paginate total="${anketaCount ?: 0}" />

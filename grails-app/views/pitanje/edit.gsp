@@ -29,8 +29,16 @@
             <g:form resource="${this.pitanje}" method="PUT">
                 <g:hiddenField name="version" value="${this.pitanje?.version}" />
                 <fieldset class="form">
+                    <div class="fieldcontain required">
+                        <label for="anketa">Anketa</label>
+                        <g:select name="anketa"
+                                  from="${sveAnkete}"
+                                  value="${this.pitanje.anketa}"
+                                  optionKey="id"
+                                  optionValue="naslov" />
+                    </div>
                     
-                    <f:all bean="pitanje" order="anketa,tekst"/>
+                    <f:all bean="pitanje" order="tekst"/>
                     <f:table collection="${pitanje.odgovori}" properties="['tekst']" /> 
                     <g:link controller='odgovor' action="create" id="${this.pitanje.id}">Add Odgovor</g:link>
                 </fieldset>
