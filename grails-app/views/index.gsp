@@ -68,12 +68,6 @@
                     </li>
                     <li>
                         <g:link controller="Rola">Role</g:link>
-                    </li>                    
-                    <li>
-                        <g:link controller="Pitanje">Pitanja</g:link>
-                    </li>                   
-                     <li>
-                        <g:link controller="Izbor">Pregled glasova</g:link>
                     </li>
 
                 </sec:access>

@@ -7,6 +7,7 @@ import grails.plugin.springsecurity.annotation.Secured;
 class KorisnikController {
 
     KorisnikService korisnikService
+    KorisnikRolaService korisnikRolaService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -18,7 +19,7 @@ class KorisnikController {
 
     @Secured(['ROLE_ADMIN','ROLE_REGULAR'])
     def show(Long id) {
-        respond korisnikService.get(id)
+        respond korisnikService.get(id), model: [korisnikRole:KorisnikRola.where {korisnik.id == id}.list()]
     }
 
     def create() {
@@ -32,7 +33,9 @@ class KorisnikController {
         }
 
         try {
-            korisnikService.save(korisnik)
+            Korisnik k = korisnikService.save(korisnik)
+            def regularRole = Rola.findOrSaveWhere(authority: 'ROLE_REGULAR')
+            KorisnikRola.create(k, regularRole, true)
         } catch (ValidationException e) {
             respond korisnik.errors, view:'create'
             return

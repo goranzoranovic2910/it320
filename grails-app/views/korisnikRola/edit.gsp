@@ -2,11 +2,11 @@
 <html>
     <head>
         <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'korisnik.label', default: 'Korisnik')}" />
+        <g:set var="entityName" value="${message(code: 'korisnikRola.label', default: 'KorisnikRola')}" />
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
     </head>
     <body>
-        <a href="#edit-korisnik" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+        <a href="#edit-korisnikRola" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
         <div class="nav" role="navigation">
             <ul>
                 <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
@@ -14,28 +14,22 @@
                 <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
             </ul>
         </div>
-        <div id="edit-korisnik" class="content scaffold-edit" role="main">
+        <div id="edit-korisnikRola" class="content scaffold-edit" role="main">
             <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <g:hasErrors bean="${this.korisnik}">
+            <g:hasErrors bean="${this.korisnikRola}">
             <ul class="errors" role="alert">
-                <g:eachError bean="${this.korisnik}" var="error">
+                <g:eachError bean="${this.korisnikRola}" var="error">
                 <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="${this.korisnik}" method="PUT">
-                <g:hiddenField name="version" value="${this.korisnik?.version}" />
+            <g:form resource="${this.korisnikRola}" method="PUT">
+                <g:hiddenField name="version" value="${this.korisnikRola?.version}" />
                 <fieldset class="form">
-                    
-                   <!-- <sec:access expression="hasRole('ROLE_REGULAR')">
-                        <f:all bean="korisnik" order="username, email, password, pol, godiste"/>
-                    </sec:access> -->
-                    <sec:access expression="hasRole('ROLE_ADMIN')">
-                        <f:all bean="korisnik" order="username, password,email, enabled, pol, godiste"/>
-                    </sec:access>
+                    <f:all bean="korisnikRola"/>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />

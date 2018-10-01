@@ -27,12 +27,7 @@
             </g:hasErrors>
             <g:form resource="${this.korisnik}" method="POST">
                 <fieldset class="form">
-                    <sec:access expression="hasRole('ROLE_REGULAR')">
-                        <f:all bean="korisnik" order="username, password, email, pol, godiste"/>
-                    </sec:access>
-                    <sec:access expression="hasRole('ROLE_ADMIN')">
-                        <f:all bean="korisnik" order="username, password, email, enabled, pol, godiste"/>
-                    </sec:access>
+                    <f:all bean="korisnik" order="username, password, email, pol, godiste"/>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
